@@ -34,7 +34,7 @@ while game_is_on:
 
     ball.move()  # default ball movement
 
-    # detects collisions with the ball or ceiling
+    # detects collisions with the floor or ceiling
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()  # the ball starts moving in the opposite y direction
 
