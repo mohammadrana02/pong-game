@@ -31,6 +31,13 @@ while game_is_on:
     ball.move()
 
     if ball.ycor() > 280 or ball.ycor() < -280:  # if the ball hits the floor or ceiling
-        ball.bounce()  # the ball starts moving in the opposite y direction
+        ball.bounce_y()  # the ball starts moving in the opposite y direction
 
+    # detects collisions with the paddle
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
+
+    # detects if the ball is out of bounds
+    if ball.xcor() > 420 or ball.xcor() < -420:
+        game_is_on = False
 screen.exitonclick()
