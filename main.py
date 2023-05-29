@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 # screen setup
@@ -13,6 +14,7 @@ screen.tracer(0)
 right_paddle = Paddle(350)
 left_paddle = Paddle(-350)
 ball = Ball()
+scoreboard = Scoreboard()
 
 # controls setup
 screen.listen()
@@ -25,7 +27,7 @@ screen.onkeypress(left_paddle.down, "s")
 game_is_on = True
 
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(0.07)  # determines how fast the ball moves
     screen.update()  # updates the screen after all the segments have been generated
 
     ball.move()
@@ -37,7 +39,15 @@ while game_is_on:
     if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
 
-    # detects if the ball is out of bounds
-    if ball.xcor() > 420 or ball.xcor() < -420:
-        game_is_on = False
+    # detects if the right paddle misses
+    if ball.xcor() > 380:
+        ball.reset_position()
+        scoreboard.l_point()
+
+    # detects if the left paddle misses
+    if ball.xcor() < -380:
+        ball.reset_position()
+        scoreboard.r_point()
+
+
 screen.exitonclick()
