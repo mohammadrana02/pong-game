@@ -11,10 +11,12 @@ class Paddle(Turtle):
         self.setpos(x=x_cor, y=0)
 
     def up(self):
+        """The paddle moves up"""
         new_y = self.ycor() + 20
         self.goto(self.xcor(), new_y)
 
     def down(self):
+        """The paddle moves down"""
         new_y = self.ycor() - 20
         self.goto(self.xcor(), new_y)
 
